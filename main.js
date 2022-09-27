@@ -1,18 +1,18 @@
-let character = document.getElementById("character");
-let game = document.getElementById("game");
-let intterval;
-let both = 0;
-let counter = 0;
-let currentBlocks = [];
+var character = document.getElementById("character");
+var game = document.getElementById("game");
+var interval;
+var both = 0;
+var counter = 0;
+var currentBlocks = [];
 
 function moveLeft(){
-   let left = parseInt(window.getComputedStyle(character).getPropertyValue("left")); 
+   var left = parseInt(window.getComputedStyle(character).getPropertyValue("left")); 
    if(left>0){
     character.style.left = left - 2 + "px";
    }
 }
 function moveRight(){
-    let left = parseInt(window.getComputedStyle(character).getPropertyValue("left")); 
+    var left = parseInt(window.getComputedStyle(character).getPropertyValue("left")); 
    if(left<300) {
     character.style.left = left + 2 + "px";
    }
@@ -33,31 +33,31 @@ document.addEventListener("keyup", event => {
 });
 
 let blocks = setInterval(function(){
-    let blockLast = document.getElementById("block"+(counter-1));
-    let holeLast = document.getElementById("hole"+(counter-1));
+    var blockLast = document.getElementById("block"+(counter-1));
+    var holeLast = document.getElementById("hole"+(counter-1));
     if(counter>0){
         let blockLastTop = parseInt(window.getComputedStyle(blockLast).getPropertyValue("top"));
         let holeLast = parseInt(window.getComputedStyle(holeLast).getPropertyValue("top"));
     }
     if(blockLastTop<400||counter==0){
-        let block = document.createElement("div");
-        let hole = document.createElement("div");
+        var block = document.createElement("div");
+        var hole = document.createElement("div");
         block.setAttribute("class", "block");
         hole.setAttribute("class","hole");
         block.setAttribute("id","block"+counter);
         hole.setAttribute("id","hole"+counter);
         block.style.top = blockLastTop + 60 + "px";
         hole.style.top = holeLastTop + 60 + "px";
-        let random = Math.floor(Math.random() * 360);
+        var random = Math.floor(Math.random() * 360);
         hole.style.left = random + "px";
         game.appendChild(block);
         game.appendChild(hole);
         currentBlocks.push(counter);
         counter++;
     }
-    const characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
-    const characterLeft = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
-    const drop = 0;
+    var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
+    var characterLeft = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
+    var drop = 0;
     if(characterTop < 0){
         alert("Game over. Score: "+(counter-9));
         clearInterval(blocks);
